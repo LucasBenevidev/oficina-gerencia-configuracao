@@ -1,0 +1,39 @@
+name: Pipeline de CI/CD - Java & Pages
+
+# O pipeline será acionado toda vez que houver alteração (push) na branch principal
+on:
+  push:
+    branches: [ "main", "master" ]
+
+# Permissões necessárias para que o pipeline possa publicar no GitHub Pages
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 1. Obter Cópia do Código Fonte (Checkout)
+      uses: actions/checkout@v4
+
+    - name: 2. Instalar e Configurar o JDK Java (Ambiente de Compilação)
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: 3. Compilar e Executar a Aplicação (Fase de Build)
+      run: |
+        # O compilador Java (javac) verifica se não há erros de sintaxe
+        javac src/BuildReporter.java
+        
+        # A execução gera o arquivo final index.html que será publicado
+        java src.BuildReporter
+
+    - name: 4. Publicar Artefato no GitHub Pages (Fase de Deploy)
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .
+        publish_branch: gh-pages
