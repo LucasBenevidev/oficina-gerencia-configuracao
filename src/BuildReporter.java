@@ -37,6 +37,7 @@ public class BuildReporter {
                 "        </div>\n" +
                 "        <p class='text-xs text-gray-400 mt-6'>Gerência de Configuração e Automação de Software</p>\n" +
                 "    </div>\n" +
+                "    <p> Aluno Lucca presente </p> \n" +
                 "</body>\n" +
                 "</html>";
 
