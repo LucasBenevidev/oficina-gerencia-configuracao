@@ -11,7 +11,7 @@ public class BuildReporter {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
         
         // Estrutura o HTML que será o artefato de entrega
-        String htmlContent = "<!DOCTYPE html>\n" +
+        Strofding htmlContent = "<!DOCTYPE html>\n" +
                 "<html lang='pt-BR'>\n" +
                 "<head>\n" +
                 "    <meta charset='UTF-8'>\n" +
